@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="no-js" ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>angular-re-captcha example</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+        <script src="../angular-re-captcha.js"></script>
+
+    </head>
+    <body ng-controller="AppCtrl">
+        <div class="container">
+            <h1>Example usage</h1>
+            <div class="alert alert-success" ng-show="showdialog">
+                <button type="button" class="close" ng-click="showdialog=false" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Yeah, you've submitted the form.</strong>
+                <br />Now you have to validate the user response on your server. <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank">here is how</a>
+            </div>
+            <form name="registerForm" role="form" ng-submit="register()" novalidate>
+                <div class="form-group" ng-class="{ 'has-error' : registerForm.email.$invalid && !registerForm.email.$pristine }">
+                    <label for="email">Email address*</label>
+                    <input type="email" class="form-control" name="email" ng-model="user.email" required>
+                    <span ng-show="registerForm.email.$invalid && !registerForm.email.$pristine" class="help-block">Please enter your email address</span>
+                </div>
+                <div class="form-group">
+                    <label>Captcha*</label>
+                    <div re-captcha ng-model="user.captcha"></div>
+                </div>
+
+                <button type="submit" ng-disabled="registerForm.$invalid" class="btn btn-primary">Create new Account</button>
+            <form>
+        </div>
+
+        <div class="container">
+            <h2>Debug output</h2>
+            <pre>
+                {{user | json}}
+            </pre>
+        </div>
+
+        <script>
+            angular.module('myApp', ['reCAPTCHA'])
+                   .config(function (reCAPTCHAProvider) {
+
+                       // required, please use your own key :)
+                       reCAPTCHAProvider.setPublicKey('6LfyK-0SAAAAAAl6V9jBGQgPxemtrpIZ-SPDPd-n');
+
+                       // optional
+                       reCAPTCHAProvider.setOptions({
+                           theme: 'clean'
+                       });
+                   })
+                   .controller('AppCtrl', function ($scope) {
+                        $scope.user = {};
+                        $scope.register = function () {
+                            if($scope.registerForm.$valid) {
+                                $scope.showdialog = true;
+                                console.log('Form is valid');
+                            }
+                        }
+                   })
+
+        </script>
+    </body>
+</html>

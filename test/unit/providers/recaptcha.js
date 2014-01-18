@@ -1,7 +1,8 @@
 'use strict';
 
 describe('Provider - reCAPTCHA', function() {
-    var expect = chai.expect;
+    var expect = chai.expect,
+        testKey = '6LfyK-0SAAAAAAl6V9jBGQgPxemtrpIZ-SPDPd-n';
 
     describe('Provider without publicKey', function() {
         beforeEach(module('reCAPTCHA'));
@@ -23,7 +24,7 @@ describe('Provider - reCAPTCHA', function() {
 
             module('reCAPTCHA', function(reCAPTCHAProvider) {
                 createElementSpy = sinon.spy(reCAPTCHAProvider, '_createScript');
-                reCAPTCHAProvider.setPublicKey('testkey');
+                reCAPTCHAProvider.setPublicKey(testKey);
             });
         });
 
@@ -43,7 +44,7 @@ describe('Provider - reCAPTCHA', function() {
         beforeEach(function() {
             module('reCAPTCHA', function(reCAPTCHAProvider) {
                 createElementSpy = sinon.spy(reCAPTCHAProvider, '_createScript');
-                reCAPTCHAProvider.setPublicKey('testkey');
+                reCAPTCHAProvider.setPublicKey(testKey);
             });
         });
 
@@ -68,7 +69,7 @@ describe('Provider - reCAPTCHA', function() {
 
         beforeEach(function() {
             module('reCAPTCHA', function(reCAPTCHAProvider) {
-                reCAPTCHAProvider.setPublicKey('testkey');
+                reCAPTCHAProvider.setPublicKey(testKey);
                 reCAPTCHAProvider.setOptions({
                     theme: 'yellow'
                 });
@@ -87,7 +88,7 @@ describe('Provider - reCAPTCHA', function() {
             reCAPTCHA.create(element[0]);
             $rootScope.$apply();
             expect(window.Recaptcha.create.called).to.be.true;
-            expect(window.Recaptcha.create.args[0][0]).to.equal('testkey');
+            expect(window.Recaptcha.create.args[0][0]).to.equal(testKey);
             var options = window.Recaptcha.create.args[0][2];
             expect(options.theme).to.equal('yellow');
         }));

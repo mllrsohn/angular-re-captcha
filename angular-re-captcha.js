@@ -35,7 +35,6 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
             deferred.resolve();
         }
 
-
         return {
             create: function(element, callback) {
                 if (!_publicKey) {
@@ -89,20 +88,22 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
 
             // Create reCAPTCHA
             reCAPTCHA.create(element[0], function() {
+
                 scope.$apply(function() {
                     scope.ngModel.challenge = reCAPTCHA.challenge();
                 });
+
                 scope.$watch('ngModel.response', function(response) {
                     controller.$setValidity(name, (response.length === 0 ? false : true));
                 });
 
-                $compile(element.find('input#recaptcha_response_field').attr('ng-model', 'ngModel.response'))(scope);
-                $compile(element.find('a#recaptcha_reload_btn').attr('ng-click', 'clear(true)'))(scope);
+                $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('ng-model', 'ngModel.response'))(scope);
+                $compile(angular.element(document.querySelector('a#recaptcha_reload_btn')).attr('ng-click', 'clear(true)'))(scope);
 
             });
 
             // Destroy Element
-            element.on('destroy', reCAPTCHA.destroy);
+            element.on('$destroy', reCAPTCHA.destroy);
         }
     };
 }]);
