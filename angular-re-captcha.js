@@ -64,7 +64,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
     };
 }).directive('reCaptcha', ['reCAPTCHA', '$compile', '$timeout', function(reCAPTCHA, $compile, $timeout) {
     return {
-        restrict: 'AE',
+        restrict: 'A',
         require: 'ngModel',
         scope: {
             ngModel: '='

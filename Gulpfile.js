@@ -12,6 +12,8 @@ gulp.task('test', function() {
         'test/unit/**/*.js'
     ]).pipe(karma({
         configFile: './test/karma.config.js',
-        action: (gulp.env.travis ? 'run' : 'watch')
+        action: (gulp.env.travis ? 'run' : 'watch'),
+        browsers: (gulp.env.travis ? ['Firefox'] : ['Chrome']),
+        singleRun: (gulp.env.travis ? true : false),
     }));
 });

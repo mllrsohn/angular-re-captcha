@@ -4,12 +4,11 @@ module.exports = function(config) {
         frameworks: ['mocha'],
         plugins: [
             'karma-mocha',
-            'karma-chrome-launcher'
+            'karma-chrome-launcher',
+            'karma-firefox-launcher'
         ],
         reporters: ['progress'],
-        browsers: ['Chrome'],
         autoWatch: true,
-        singleRun: false,
         colors: true
     });
 };

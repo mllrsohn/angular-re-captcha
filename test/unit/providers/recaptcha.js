@@ -30,7 +30,7 @@ describe('Provider - reCAPTCHA', function() {
         afterEach(function () {
             delete window.Recaptcha;
             createElementSpy.restore();
-        })
+        });
 
         it('should not create a script tag if there is a window.Recaptcha instance', inject(function(reCAPTCHA) {
             expect(createElementSpy.called).not.to.be.true;
