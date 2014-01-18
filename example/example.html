@@ -53,8 +53,9 @@
                            theme: 'clean'
                        });
                    })
-                   .controller('AppCtrl', function ($scope) {
+                   .controller('AppCtrl', function ($scope, reCAPTCHA) {
                         $scope.user = {};
+
                         $scope.register = function () {
                             if($scope.registerForm.$valid) {
                                 $scope.showdialog = true;
