@@ -22,7 +22,8 @@
     "gulp-karma": "0.0.2",
     "mocha": "~1.17.0",
     "karma-mocha": "~0.1.1",
-    "gulp-bump": "~0.1.0"
+    "gulp-bump": "~0.1.0",
+    "gulp-git": "~0.2.1"
   },
   "license": "MIT"
 }

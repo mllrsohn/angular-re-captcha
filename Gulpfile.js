@@ -38,5 +38,5 @@ gulp.task('tag', function() {
     var pkg = require('./package.json');
     var version = 'v' + pkg.version;
     gulp.src('./')
-        .pipe(git.tag(version, 'Release ('+version+')'));
+        .pipe(git.tag(version, 'Release ('+version+')')).on('error', console.log);
 });
