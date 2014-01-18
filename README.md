@@ -1,4 +1,4 @@
-# angular-re-captcha [![Bower version][bower-image]][bower-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][coveralls-image]][coveralls-url]
+# angular-re-captcha [![Bower version][bower-image]][bower-url] [![Build Status][travis-image]][travis-url] 
 
 > Integrate [reCAPTCHA](http://www.google.com/recaptcha) into angularjs with form validation support.
 
@@ -64,6 +64,3 @@ Sets the options, that get passed into the Recaptcha.create call. Here are a lis
 
 [travis-url]: http://travis-ci.org/mllrsohn/angular-re-captcha
 [travis-image]: https://secure.travis-ci.org/mllrsohn/angular-re-captcha.png?branch=master
-
-[coveralls-url]: https://coveralls.io/r/mllrsohn/angular-re-captcha
-[coveralls-image]: https://coveralls.io/repos/mllrsohn/angular-re-captcha/badge.png
