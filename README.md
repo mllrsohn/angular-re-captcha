@@ -62,7 +62,7 @@ Pull requests are welcome. Please make sure that you include tests in your PR.
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-[bower-url]: http://badge.fury.io/bo/angular-recaptcha
+[bower-url]: http://badge.fury.io/bo/angular-re-captcha
 [bower-image]: https://badge.fury.io/bo/angular-re-captcha.png
 
 [travis-url]: http://travis-ci.org/mllrsohn/angular-re-captcha
