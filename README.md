@@ -53,7 +53,12 @@ Sets the PublicKey
 Type: `function`  
 Default: `null`
 
-Sets the options, that get passed into the Recaptcha.create call. Here are a list of the [available options](https://developers.google.com/recaptcha/docs/customization)
+Sets the options, that get passed into the Recaptcha.create call. 
+
+The only angular specific option is **templateUrl** which should point to a custom template if you desire to use one (e.g. for responsive layouts its required to use a custom template).
+
+
+Here are a list of the [available options](https://developers.google.com/recaptcha/docs/customization) provided by the recaptcha library itself.
 
 ## Contribute
 Pull requests are welcome. Please make sure that you include tests in your PR.

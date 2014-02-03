@@ -10,7 +10,11 @@ exports = module.exports = function(ngModule) {
 
         this.setOptions = function(options) {
             _options = options;
-            _options.custom_theme_widget = (_options.theme||{} === 'custom') ? 'recaptcha_widget' : false;
+            _options.theme = (options.templateUrl) ? 'custom' : options.theme;
+            _options.custom_theme_widget =
+                _options.templateUrl ?
+                    (_options.templateId) ? _options.templateId : 'recaptcha_widget'
+                    : false;
         };
 
         function createScript($document, callback) {
@@ -49,7 +53,7 @@ exports = module.exports = function(ngModule) {
                     });
                 },
                 customTemplate: function(){
-                    return ((_options||{}).theme||{}) === 'custom';
+                    return _options.templateUrl;
                 },
                 response: function() {
                     return $window.Recaptcha.get_response();
@@ -64,6 +68,7 @@ exports = module.exports = function(ngModule) {
         };
     });
 
+    /* jshint multistr: true */
     ngModule.directive('reCaptcha', function(reCAPTCHA, $compile, $timeout) {
         return {
             restrict: 'AE',
@@ -72,32 +77,7 @@ exports = module.exports = function(ngModule) {
                 ngModel: '='
             },
 
-            /* jshint multistr: true */
-            template:   (reCAPTCHA.customTemplate) ?
-                        '<div id="recaptcha_widget"> \
-                            <div id="recaptcha_image"></div> \
-                            <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div> \
-                            \
-                            <span class="recaptcha_only_if_image">Enter the words above:</span> \
-                            <span class="recaptcha_only_if_audio">Enter the numbers you hear:</span> \
-                            \
-                            <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" /> \
-                            \
-                            <div><a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a></div> \
-                            <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type(\'audio\')">Get an audio CAPTCHA</a></div> \
-                            <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type(\'image\')">Get an image CAPTCHA</a></div> \
-                            \
-                            <div><a href="javascript:Recaptcha.showhelp()">Help</a></div> \
-                            \
-                        </div> \
-                            \
-                        <noscript> \
-                            <iframe src="http://www.google.com/recaptcha/api/noscript?k=your_public_key" height="300" width="500" frameborder="0"></iframe><br> \
-                            <textarea name="recaptcha_challenge_field" rows="3" cols="40"> \
-                            </textarea> \
-                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge"> \
-                        </noscript>'
-                        : false,
+            templateUrl:   (reCAPTCHA.customTemplate) ? reCAPTCHA.customTemplate : false,
 
             link: function(scope, element, attrs, controller) {
 
@@ -128,8 +108,8 @@ exports = module.exports = function(ngModule) {
                         controller.$setValidity(name, (response.length === 0 ? false : true));
                     });
 
-                    $compile(element.find('input#recaptcha_response_field').attr('ng-model', 'ngModel.response'))(scope);
-                    $compile(element.find('a#recaptcha_reload_btn').attr('ng-click', 'clear(true)'))(scope);
+                    $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('ng-model', 'ngModel.response'))(scope);
+                    $compile(angular.element(document.querySelector('a#recaptcha_reload_btn')).attr('ng-click', 'clear()'))(scope);
 
                 });
 

@@ -1,0 +1,24 @@
+ <div id="recaptcha_widget">
+   <div id="recaptcha_image"></div>
+   <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+
+   <span class="recaptcha_only_if_image">Enter the words above:</span>
+   <span class="recaptcha_only_if_audio">Enter the numbers you hear:</span>
+
+   <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+
+   <ul class="recaptcha_actions">
+        <li><a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a></li>
+        <li class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio\)">Get an audio CAPTCHA</a></li>
+        <li class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></li>
+        <li class="last"><a href="javascript:Recaptcha.showhelp()">Help</a></li>
+   </ul>
+
+</div>
+
+<noscript>
+    <iframe src="http://www.google.com/recaptcha/api/noscript?k=your_public_key" height="300" width="500" frameborder="0"></iframe><br>
+    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+    </textarea>
+    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+</noscript>
