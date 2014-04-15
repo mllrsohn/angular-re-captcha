@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git://github.com/mllrsohn/angular-re-captcha"
   },
-  "main": "./angular-re-captcha",
+  "main": "./angular-re-captcha.js",
   "dependencies": {
     "angular": "~1.2.9"
   },
