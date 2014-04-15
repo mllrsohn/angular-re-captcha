@@ -24,9 +24,9 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
         scriptTag.onload = callback;
         var s = $document.getElementsByTagName('body')[0];
         s.appendChild(scriptTag);
-    }
+    };
 
-    this.$get = function($q, $rootScope, $window, $timeout, $document) {
+    this.$get = ['$q', '$rootScope', '$window', '$timeout', '$document', function($q, $rootScope, $window, $timeout, $document) {
         var deferred = $q.defer();
 
         if (!$window.Recaptcha) {
@@ -60,7 +60,8 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                 $window.Recaptcha.destroy();
             }
         };
-    };
+    }];
+
 }).directive('reCaptcha', ['reCAPTCHA', '$compile', '$timeout', function(reCAPTCHA, $compile, $timeout) {
     return {
         restrict: 'A',
