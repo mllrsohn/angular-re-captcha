@@ -78,7 +78,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                 };
                 $timeout(function () {
                     scope.ngModel.challenge = reCAPTCHA.challenge();
-                },1000);
+                },250);
             };
 
             // Create reCAPTCHA
