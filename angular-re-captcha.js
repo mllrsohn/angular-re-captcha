@@ -86,14 +86,9 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
 
                 // Reset on Start
                 scope.clear();
-                controller.$setValidity(name, false);
-
-                // Watch for changes to setValidity
-                scope.$watch('ngModel.response', function(response) {
-                    controller.$setValidity(name, (response.length === 0 ? false : true));
-                });
 
                 // Attach model and click handler
+                $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('required', ''))(scope);
                 $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('ng-model', 'ngModel.response'))(scope);
                 $compile(angular.element(document.querySelector('a#recaptcha_reload_btn')).attr('ng-click', 'clear()'))(scope);
 
