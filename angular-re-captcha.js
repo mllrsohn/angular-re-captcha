@@ -27,7 +27,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
     };
 
     this.$get = ['$q', '$rootScope', '$window', '$document', function($q, $rootScope, $window, $document) {
-        var deferred = $q.defer();$
+        var deferred = $q.defer();
 
         if (!$window.Recaptcha) {
             self._createScript($document[0], deferred.resolve);
