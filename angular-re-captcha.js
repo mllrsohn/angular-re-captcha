@@ -56,6 +56,9 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
             challenge: function() {
                 return $window.Recaptcha.get_challenge();
             },
+            reload: function() {
+                return $window.Recaptcha.reload();
+            },
             destroy: function() {
                 $window.Recaptcha.destroy();
             }
