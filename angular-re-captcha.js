@@ -26,7 +26,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
         s.appendChild(scriptTag);
     };
 
-    this.$get = ['$q', '$rootScope', '$window', '$timeout', '$document', function($q, $rootScope, $window, $timeout, $document) {
+    this.$get = ['$q', '$rootScope', '$window', '$document', function($q, $rootScope, $window, $document) {
         var deferred = $q.defer();
 
         if (!$window.Recaptcha) {
@@ -62,7 +62,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
         };
     }];
 
-}).directive('reCaptcha', ['reCAPTCHA', '$compile', '$timeout', function(reCAPTCHA, $compile, $timeout) {
+}).directive('reCaptcha', ['reCAPTCHA', '$compile', function(reCAPTCHA, $compile) {
     return {
         restrict: 'A',
         require: 'ngModel',
@@ -76,9 +76,6 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                     response: '',
                     challenge: false
                 };
-                $timeout(function () {
-                    scope.ngModel.challenge = reCAPTCHA.challenge();
-                },250);
             };
 
             // Create reCAPTCHA
@@ -86,6 +83,13 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
 
                 // Reset on Start
                 scope.clear();
+
+                // watch if challenge changes
+                scope.$watch(function() {
+                    return reCAPTCHA.challenge();
+                }, function (newValue) {
+                    scope.ngModel.challenge = newValue;
+                });
 
                 // Attach model and click handler
                 $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('required', ''))(scope);
