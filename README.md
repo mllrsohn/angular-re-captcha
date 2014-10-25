@@ -55,6 +55,27 @@ Default: `null`
 
 Sets the options, that get passed into the Recaptcha.create call. Here are a list of the [available options](https://developers.google.com/recaptcha/docs/customization)
 
+## Custom Themes
+
+Custom themes configure recaptcha to use existing elements instead of injecting elements for you.
+Refer to https://developers.google.com/recaptcha/docs/customization for additional documentation and example widgets.
+
+```javascript
+// Configure the template to use a custom widget.
+reCAPTCHAProvider.setOptions({
+    theme: 'custom',
+    custom_theme_widget: 'recaptcha_widget' // The id of your widget element.
+});    
+```
+
+```html
+<div re-captcha ng-model="user.captcha" id="recaptcha_widget" style="display:none">
+    <div id="recaptcha_image"></div>
+    <img id="recaptcha_logo" alt="" src="https://www.google.com/recaptcha/api/img/clean/logo.png">
+    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+</div>
+```
+
 ## Contribute
 Pull requests are welcome. Please make sure that you include tests in your PR.
 
