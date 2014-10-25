@@ -72,7 +72,7 @@ reCAPTCHAProvider.setOptions({
 <div re-captcha ng-model="user.captcha" id="recaptcha_widget" style="display:none">
     <div id="recaptcha_image"></div>
     <img id="recaptcha_logo" alt="" src="https://www.google.com/recaptcha/api/img/clean/logo.png">
-    <input type="text" ng-model="user.captcha.response" id="recaptcha_response_field" name="recaptcha_response_field" />
+    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
 </div>
 ```
 
