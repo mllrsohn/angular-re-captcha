@@ -4,6 +4,7 @@
   "version": "0.0.3",
   "homepage": "https://github.com/mllrsohn/angular-re-captcha",
   "dependencies": {},
+  "main": "./angular-re-captcha.js",
   "scripts": {
     "test": "./node_modules/.bin/gulp test --travis"
   },
