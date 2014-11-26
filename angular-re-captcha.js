@@ -95,7 +95,7 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                 });
 
                 // Attach model and click handler
-                $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('required', ''))(scope);
+                $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('ng-required', 'true'))(scope);
                 $compile(angular.element(document.querySelector('input#recaptcha_response_field')).attr('ng-model', 'ngModel.response'))(scope);
                 $compile(angular.element(document.querySelector('a#recaptcha_reload_btn')).attr('ng-click', 'clear()'))(scope);
 
