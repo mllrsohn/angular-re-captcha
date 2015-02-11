@@ -60,7 +60,9 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                 return $window.Recaptcha.reload();
             },
             destroy: function() {
-                $window.Recaptcha.destroy();
+                if ($window.Recaptcha) {
+                    $window.Recaptcha.destroy();
+                }
             }
         };
     }];
