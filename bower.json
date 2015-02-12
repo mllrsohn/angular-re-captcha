@@ -12,6 +12,11 @@
   "dependencies": {
     "angular": "~1.x"
   },
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    "test"
+  ],
   "devDependencies": {
     "angular-mocks": "~1.x"
   },
