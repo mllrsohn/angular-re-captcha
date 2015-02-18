@@ -56,6 +56,9 @@
                    .controller('AppCtrl', function ($scope, reCAPTCHA) {
                         $scope.user = {};
 
+                        // or you can also set key here
+                        reCAPTCHA.setPublicKey('6LfyK-0SAAAAAAl6V9jBGQgPxemtrpIZ-SPDPd-n');
+
                         $scope.register = function () {
                             if($scope.registerForm.$valid) {
                                 $scope.showdialog = true;

@@ -50,6 +50,9 @@ angular.module('reCAPTCHA', []).provider('reCAPTCHA', function() {
                     );
                 });
             },
+            setPublicKey: function(publicKey) {
+                _publicKey = publicKey;
+            },
             response: function() {
                 return $window.Recaptcha.get_response();
             },
