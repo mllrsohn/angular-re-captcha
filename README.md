@@ -28,7 +28,13 @@ angular.module('myApp', ['reCAPTCHA'])
             reCAPTCHAProvider.setOptions({
                 theme: 'clean'
             });
-        });            
+        })
+        .controller('AppCtrl', function ($scope, reCAPTCHA) {
+
+            // or you can also set key here
+            reCAPTCHA.setPublicKey('---KEY---');
+
+       });
 ```
 and use the directive within a form. Make sure to set a ng-model
 
@@ -54,6 +60,15 @@ Type: `function`
 Default: `null`
 
 Sets the options, that get passed into the Recaptcha.create call. Here are a list of the [available options](https://developers.google.com/recaptcha/docs/customization)
+
+
+### reCAPTCHA
+
+#### reCAPTCHA.setPublicKey()
+Type: `function`
+Default: `null`
+
+Sets the PublicKey
 
 ## Custom Themes
 

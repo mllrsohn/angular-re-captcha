@@ -109,4 +109,31 @@ describe('Provider - reCAPTCHA', function() {
         }));
     });
 
+    describe('Factory Functions', function() {
+
+        beforeEach(function() {
+
+            module('reCAPTCHA', function(reCAPTCHAProvider) {
+            });
+
+            window.Recaptcha = {
+                create        : sinon.spy(),
+                get_response  : sinon.spy(),
+                get_challenge : sinon.spy(),
+                destroy       : sinon.spy()
+            };
+        });
+
+        it('should call create an reCAPTCHA with the key set via factory method',
+            inject(function(reCAPTCHA, $rootScope) {
+                var element = angular.element('<div></div>');
+                reCAPTCHA.setPublicKey(testKey);
+                reCAPTCHA.create(element[0]);
+                $rootScope.$apply();
+                expect(window.Recaptcha.create.called).to.be.true;
+                expect(window.Recaptcha.create.args[0][0]).to.equal(testKey);
+            }));
+
+    });
+
 });
